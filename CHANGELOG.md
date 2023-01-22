@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.0.1
+## 3.0.3
 
 - Fix: check if elements are defined before calling
 `window.customElements.define()`
