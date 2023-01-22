@@ -3,11 +3,13 @@
 import "bridgetown-quick-search"
 
 */
-import { LitElement, css, html } from "lit"
+import { css, html } from "lit"
+import { BaseElement } from "./base-element.js"
 import { unsafeHTML } from "lit/directives/unsafe-html.js"
 import SearchEngine from "./search_engine"
 
-export class BridgetownSearchForm extends LitElement {
+export class BridgetownSearchForm extends BaseElement {
+  static baseName = "bridgetown-search-form"
 	constructor () {
 		super()
 		this._handleClick = null
@@ -81,7 +83,9 @@ export class BridgetownSearchForm extends LitElement {
     return this._handleChange
   }
 }
-export class BridgetownSearchResults extends LitElement {
+export class BridgetownSearchResults extends BaseElement {
+  static baseName = "bridgetown-search-results"
+
 	static get properties () {
 		return {
 			theme: { type: String },
@@ -256,6 +260,5 @@ export class BridgetownSearchResults extends LitElement {
   }
 }
 
-window.customElements.define("bridgetown-search-results", BridgetownSearchResults)
-window.customElements.define("bridgetown-search-form", BridgetownSearchForm)
-
+BridgetownSearchResults.define()
+BridgetownSearchForm.define()

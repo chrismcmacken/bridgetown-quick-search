@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.1
+
+- Fix: check if elements are defined before calling
+`window.customElements.define()`
+
 ## 3.0.0
 
 Modernize the workflow. Remove decorators, update
