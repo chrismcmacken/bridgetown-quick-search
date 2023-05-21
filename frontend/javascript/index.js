@@ -229,7 +229,9 @@ export class BridgetownSearchResults extends BaseElement {
 
     let resultsStatus = ""
     if (this.results.length == 0) {
-      resultsStatus = html`<p id="no-results">No results found for "<strong>${this.latestQuery}</strong>"</p>`
+      resultsStatus = html`<p part="no-results" id="no-results">
+        No results found for "<strong part="no-results__query">${this.latestQuery}</strong>"</p>
+      `
     }
 
     const theme = this.theme == "dark" ? "dark" : "light"
@@ -239,8 +241,11 @@ export class BridgetownSearchResults extends BaseElement {
       ${this.results.map(result => {
         return html`
           <a part="inner-link" href="${result.url}">
-            <li><h1>${unsafeHTML(result.heading)}</h1>
-            <p>${unsafeHTML(result.preview)}</p></li>
+            <li part="inner-link__list-item">
+              <h2 part="inner-link__heading">
+                ${unsafeHTML(result.heading)}
+              </h2>
+            <p part="inner-link__preview">${unsafeHTML(result.preview)}</p></li>
           </a>
         `
       })}
