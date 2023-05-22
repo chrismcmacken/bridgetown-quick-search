@@ -117,6 +117,11 @@ export class BridgetownSearchResults extends BaseElement {
       z-index: 9999;
       background: transparent;
     }
+
+    *, *:after, *:before {
+      box-sizing: border-box;
+    }
+
     [part=inner] {
       margin: 0;
       list-style-type: none;
@@ -151,7 +156,7 @@ export class BridgetownSearchResults extends BaseElement {
       padding: 0;
     }
 
-    h1 {
+    h2 {
       font-size: 1em;
       font-weight: 400;
       font-style: normal;
@@ -161,10 +166,10 @@ export class BridgetownSearchResults extends BaseElement {
       border-bottom: 1px solid var(--divider-color, #cccccc);
       color: var(--link-color, #000000);
     }
-    h1 a {
+    h2 a {
       display: block;
     }
-    [part=inner].dark-theme h1 {
+    [part=inner].dark-theme h2 {
       color: var(--link-color-dark, #ffffff);
       border-bottom: 1px solid var(--divider-color-dark, #444444);
     }
