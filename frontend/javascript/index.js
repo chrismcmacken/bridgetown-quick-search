@@ -117,6 +117,11 @@ export class BridgetownSearchResults extends BaseElement {
       z-index: 9999;
       background: transparent;
     }
+
+    *, *:after, *:before {
+      box-sizing: border-box;
+    }
+
     [part=inner] {
       margin: 0;
       list-style-type: none;
@@ -151,7 +156,7 @@ export class BridgetownSearchResults extends BaseElement {
       padding: 0;
     }
 
-    h1 {
+    h2 {
       font-size: 1em;
       font-weight: 400;
       font-style: normal;
@@ -161,10 +166,10 @@ export class BridgetownSearchResults extends BaseElement {
       border-bottom: 1px solid var(--divider-color, #cccccc);
       color: var(--link-color, #000000);
     }
-    h1 a {
+    h2 a {
       display: block;
     }
-    [part=inner].dark-theme h1 {
+    [part=inner].dark-theme h2 {
       color: var(--link-color-dark, #ffffff);
       border-bottom: 1px solid var(--divider-color-dark, #444444);
     }
@@ -229,7 +234,9 @@ export class BridgetownSearchResults extends BaseElement {
 
     let resultsStatus = ""
     if (this.results.length == 0) {
-      resultsStatus = html`<p id="no-results">No results found for "<strong>${this.latestQuery}</strong>"</p>`
+      resultsStatus = html`<p part="no-results" id="no-results">
+        No results found for "<strong part="no-results__query">${this.latestQuery}</strong>"</p>
+      `
     }
 
     const theme = this.theme == "dark" ? "dark" : "light"
@@ -239,8 +246,11 @@ export class BridgetownSearchResults extends BaseElement {
       ${this.results.map(result => {
         return html`
           <a part="inner-link" href="${result.url}">
-            <li><h1>${unsafeHTML(result.heading)}</h1>
-            <p>${unsafeHTML(result.preview)}</p></li>
+            <li part="inner-link__list-item">
+              <h2 part="inner-link__heading">
+                ${unsafeHTML(result.heading)}
+              </h2>
+            <p part="inner-link__preview">${unsafeHTML(result.preview)}</p></li>
           </a>
         `
       })}
