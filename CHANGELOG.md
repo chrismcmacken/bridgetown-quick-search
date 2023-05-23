@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.0
+
+- Feat: Add additional parts for styling as well as a slot box-sizing reset.
+
 ## 3.0.3
 
 - Fix: check if elements are defined before calling
