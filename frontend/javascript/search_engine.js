@@ -1,16 +1,28 @@
 import lunr from "lunr"
 
 class SearchEngine {
+  static endpoint = "/bridgetown_quick_search/index.json"
+  static async fetchAndGenerateIndex (endpoint = this.endpoint) {
+    const response = await fetch(endpoint)
+    const searchIndex = await response.json()
+    const searchEngine = new this()
+    searchEngine.generateIndex(searchIndex)
+
+    return {
+      searchIndex,
+      searchEngine
+    }
+  }
   async generateIndex(indexData) {
     this.index = lunr(function () {
       this.ref("id");
-      this.field("id");
-      this.field("title", {boost: 10});
-      this.field("categories");
-      this.field("tags");
-      this.field("url");
-      this.field("content");
-      
+      this.field("id", { boost: 1000 });
+      this.field("title", { boost: 100 });
+      this.field("categories", { boost: 10 });
+      this.field("tags", { boost: 2 });
+      this.field("url", { boost: 100 });
+      this.field("content", { boost: 1 });
+
       indexData.forEach(item => {
         if (item.content) {
           this.add(item);
@@ -24,10 +36,16 @@ class SearchEngine {
   performSearch(query, snippetLength = null) {
     if (this.index) {
       this.query = query
-      const results = this.index.search(this.query)
+      const hasQuery = query.length > 0;
+      const searchTokens = query
+        .split(' ')
+        .map((term, index, arr) => `${term}${index === arr.length - 1 ? `* ${term}~1` : '~1'}`)
+        .join(' ');
+      const matches = hasQuery ? this.index.search(`${query} ${searchTokens}`) : [];
+      const hasResults = hasQuery && matches.length > 0;
 
-      if (results.length) {
-        return results.map(result => {
+      if (hasResults) {
+        return matches.map(result => {
           const item = this.indexData.find(item => item.id == result.ref)
           const contentPreview = this.previewTemplate(item.content, snippetLength)
           const titlePreview = this.previewTemplate(item.title) + `<!--(${result.score})-->`
@@ -58,7 +76,7 @@ class SearchEngine {
       const wordLocations = this.query.toLowerCase().split(" ").map(word => {
         return textToSearch.indexOf(word)
       }).filter(location => location != -1).sort((a,b) => { return a-b })
-      
+
       // Grab the first location and back up a bit
       // Then go past second location or just use the length
       if (wordLocations[1]) {
