@@ -19,7 +19,7 @@ class SearchEngine {
       this.field("id", { boost: 1000 });
       this.field("title", { boost: 100 });
       this.field("categories", { boost: 10 });
-      this.field("tags", { boost: 2 });
+      this.field("tags", { boost: 10 });
       this.field("url", { boost: 100 });
       this.field("content", { boost: 1 });
 
@@ -45,10 +45,13 @@ class SearchEngine {
       const hasResults = hasQuery && matches.length > 0;
 
       if (hasResults) {
+        console.log({indexData: this.indexData})
         return matches.map(result => {
           const item = this.indexData.find(item => item.id == result.ref)
-          const contentPreview = this.previewTemplate(item.content, snippetLength)
-          const titlePreview = this.previewTemplate(item.title) + `<!--(${result.score})-->`
+          // const contentPreview = this.previewTemplate(item.content, snippetLength)
+          const contentPreview = item.content
+          // const titlePreview = this.previewTemplate(item.title) + `<!--(${result.score})-->`
+          const titlePreview = item.title
 
           return {
             url: item.url.trim(),

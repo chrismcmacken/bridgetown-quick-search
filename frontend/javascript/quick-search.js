@@ -201,8 +201,7 @@ export class BridgetownSearchResults extends BaseElement {
     })
   }
 
-  async fetchSearchIndex()
-  {
+  async fetchSearchIndex() {
     const { searchEngine, searchIndex } = SearchEngine.fetchAndGenerateIndex()
 
     this.searchEngine = searchEngine
