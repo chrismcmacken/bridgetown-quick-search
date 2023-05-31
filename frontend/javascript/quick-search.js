@@ -1,7 +1,8 @@
+// @ts-check
 import { css, html } from "lit"
 import { BaseElement } from "./base-element.js"
 import { unsafeHTML } from "lit/directives/unsafe-html.js"
-import SearchEngine from "./search_engine"
+import SearchEngine from "./search_engine.js"
 
 export class BridgetownSearchForm extends BaseElement {
   static baseName = "bridgetown-search-form"

@@ -45,15 +45,17 @@ class SearchEngine {
       const hasResults = hasQuery && matches.length > 0;
 
       if (hasResults) {
-        console.log({indexData: this.indexData})
+        // console.log({indexData: this.indexData})
         return matches.map(result => {
           const item = this.indexData.find(item => item.id == result.ref)
-          // const contentPreview = this.previewTemplate(item.content, snippetLength)
-          const contentPreview = item.content
-          // const titlePreview = this.previewTemplate(item.title) + `<!--(${result.score})-->`
-          const titlePreview = item.title
+          const contentPreview = this.previewTemplate(item.content, snippetLength)
+          const titlePreview = this.previewTemplate(item.title) + `<!--(${result.score})-->`
 
           return {
+            id: item.id.trim(),
+            title: item.title.trim(),
+            content: item.content.trim(),
+            categories: item.categories,
             url: item.url.trim(),
             heading: titlePreview,
             preview: contentPreview

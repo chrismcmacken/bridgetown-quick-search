@@ -1,6 +1,6 @@
 // @ts-check
 import { NinjaKeys } from "konnors-ninja-keys/ninja-keys.js"
-import SearchEngine from "./search_engine"
+import SearchEngine from "./search_engine.js"
 
 /**
  * @typedef {Object} SearchResult
@@ -18,6 +18,7 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   static properties = Object.assign(NinjaKeys.properties, {
 		results: { state: true, type: Array },
 		snippetLength: { state: true, type: Number },
+		staticData: { state: true, type: Array }
   })
 
   constructor () {
@@ -28,6 +29,7 @@ export class BridgetownNinjaKeys extends NinjaKeys {
       const query = event.detail.search
       this.showResultsForQuery(query)
       console.log(this.results)
+      this.requestUpdate()
     }
   }
 
@@ -36,9 +38,8 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     await this.updateComplete
     await this.fetchAndGenerateIndex()
 
-    this.data = [
-      ...this.data
-    ]
+    /** @type {import("konnors-ninja-keys").INinjaAction[]} */
+    this.staticData = []
   }
 
   async fetchAndGenerateIndex () {
@@ -58,24 +59,40 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   showResultsForQuery(query, maxResults = 10) {
     this.latestQuery = query
     if (query && query.length >= 1) {
-      this.showResults = true
+    // this.showResults = true
       this.results = this.__searchEngine.performSearch(query, this.snippetLength).slice(0, maxResults)
       // console.log("RESULTS", this.results)
-      const result = this.results[0]
-      if (!result) return
+      // const results = this.results
+      // console.log({ result })
+      // if (!result) return
 
-      this.data = [
-        ...this.data,
-        {
-          id: result.heading,
-          title: result.heading,
-          icon: 'light_mode',
+      if (this.results?.length <= 0) return
+
+      /** @type {import("konnors-ninja-keys").INinjaAction[]} */
+      const actions = this.results.map((result) => {
+        let { id, title, categories } = result
+
+        categories = categories.split(/[-_]/).map(capitalizeFirstLetter).join(" ")
+        return {
+          id,
+          title,
+          section: categories,
           handler: () => {},
-        },
+        }
+      })
+
+
+      /** @type {import("konnors-ninja-keys").INinjaAction[]} */
+      this.data = [
+        ...this.staticData,
+        ...actions
       ]
-    } else {
-      this.showResults = false
+    // } else {
+    //   this.showResults = false
     }
     this.requestUpdate()
   }
+}
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
