@@ -23,7 +23,7 @@
   "dependencies": {
     "konnors-ninja-keys": "^1.5.1",
     "lit": "^2.4.1",
-    "lunr": "^2.3.8"
+    "lunr": "^2.3.8",
   },
   "devDependencies": {
     "esbuild": "^0.15.13",
