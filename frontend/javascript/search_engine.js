@@ -36,16 +36,16 @@ class SearchEngine {
   performSearch(query, snippetLength = null) {
     if (this.index) {
       this.query = query
-      const hasQuery = query.length > 0;
+      const hasQuery = query.trim().length > 0;
       const searchTokens = query
         .split(' ')
         .map((term, index, arr) => `${term}${index === arr.length - 1 ? `* ${term}~1` : '~1'}`)
         .join(' ');
-      const matches = hasQuery ? this.index.search(`${query} ${searchTokens}`) : [];
-      const hasResults = hasQuery && matches.length > 0;
+      const matches = hasQuery ? this.index.search(`${query} ${searchTokens}`) : this.index.search(`"*" ${searchTokens}`);
+
+      const hasResults = matches?.length > 0;
 
       if (hasResults) {
-        // console.log({indexData: this.indexData})
         return matches.map(result => {
           const item = this.indexData.find(item => item.id == result.ref)
           const contentPreview = this.previewTemplate(item.content, snippetLength)

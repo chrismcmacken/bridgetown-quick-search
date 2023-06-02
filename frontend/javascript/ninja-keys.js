@@ -28,7 +28,6 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     this.handleInput = (/** @type {NinjaChangeEvent} */ event) => {
       const query = event.detail.search
       this.showResultsForQuery(query)
-      console.log(this.results)
       this.requestUpdate()
     }
   }
@@ -45,7 +44,6 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   async fetchAndGenerateIndex () {
     const { searchEngine, searchIndex } = await SearchEngine.fetchAndGenerateIndex()
 
-    console.log("GENERATING INDEX")
     this.__searchEngine = searchEngine
     this.__searchIndex = searchIndex
     this.addEventListener('change', this.handleInput)
@@ -61,10 +59,6 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     if (query && query.length >= 1) {
     // this.showResults = true
       this.results = this.__searchEngine.performSearch(query, this.snippetLength).slice(0, maxResults)
-      // console.log("RESULTS", this.results)
-      // const results = this.results
-      // console.log({ result })
-      // if (!result) return
 
       if (this.results?.length <= 0) return
 
@@ -87,12 +81,15 @@ export class BridgetownNinjaKeys extends NinjaKeys {
         ...this.staticData,
         ...actions
       ]
-    // } else {
-    //   this.showResults = false
     }
     this.requestUpdate()
   }
 }
+
+/**
+ * @param {string} string
+ * @returns {string}
+ */
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
