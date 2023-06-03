@@ -70,16 +70,22 @@ export class BridgetownNinjaKeys extends NinjaKeys {
       }
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
-      const actions = this.results.map((result) => {
+      const actions = []
+
+      this.results.forEach((result) => {
         let { id, title, categories, url } = result
 
+        if (url.endsWith(".json")) {
+          return
+        }
+
         categories = categories.split(/[-_]/).map(capitalizeFirstLetter).join(" ")
-        return {
+        actions.push({
           id,
           title,
           section: categories,
           href: url,
-        }
+        })
       })
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
