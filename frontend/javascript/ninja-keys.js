@@ -13,6 +13,11 @@ import SearchEngine from "./search_engine.js"
  * @typedef {CustomEvent<{search: string, actions: Array<import("konnors-ninja-keys").INinjaAction>}>} NinjaChangeEvent
  */
 
+/**
+ * @extends {NinjaKeys}
+ * @class
+ * @type NinjaKeys
+ */
 export class BridgetownNinjaKeys extends NinjaKeys {
   static baseName = "bridgetown-ninja-keys"
   static properties = Object.assign(NinjaKeys.properties, {
@@ -21,6 +26,10 @@ export class BridgetownNinjaKeys extends NinjaKeys {
 		staticData: { state: true, type: Array },
 		alwaysShowResults: { state: true, type: Boolean }
   })
+
+  findMatches (flatData) {
+    return flatData
+  }
 
   constructor () {
     super()
@@ -73,7 +82,7 @@ export class BridgetownNinjaKeys extends NinjaKeys {
       const actions = []
 
       this.results.forEach((result) => {
-        let { id, title, categories, url } = result
+        let { id, title, categories, url, content } = result
 
         if (url.endsWith(".json")) {
           return
@@ -85,6 +94,7 @@ export class BridgetownNinjaKeys extends NinjaKeys {
           title,
           section: categories,
           href: url,
+          // content
         })
       })
 

@@ -87,6 +87,17 @@ bridgetown-search-results::part(inner-link) {
 
 You can add `exclude_from_search: true` to the front matter of any page or document to exclude it from the search index JSON. To batch-exclude pages, collections, categories, etc., you could use front matter defaults to set the `exclude_from_search` variable.
 
+## Using Ninja-Keys
+
+```js
+import { BridgetownNinjaKeys } from "@konnorr/bridgetown-quick-search/frontend/javascript/ninja-keys.js"
+BridgetownNinjaKeys.define()
+```
+
+```html
+<bridgetown-ninja-keys></bridgetown-ninja-keys>
+```
+
 ## Testing
 
 * Run `bundle exec rspec` to run the test suite
