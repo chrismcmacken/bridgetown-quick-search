@@ -18,13 +18,17 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   static properties = Object.assign(NinjaKeys.properties, {
 		results: { state: true, type: Array },
 		snippetLength: { state: true, type: Number },
-		staticData: { state: true, type: Array }
+		staticData: { state: true, type: Array },
+		alwaysShowResults: { state: true, type: Boolean }
   })
 
   constructor () {
     super()
     this.results = []
     this.snippetLength = 142
+    this.alwaysShowResults = true
+    /** @type {import("konnors-ninja-keys").INinjaAction[]} */
+    this.staticData = []
     this.handleInput = (/** @type {NinjaChangeEvent} */ event) => {
       const query = event.detail.search
       this.showResultsForQuery(query)
@@ -36,9 +40,6 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     super.connectedCallback()
     await this.updateComplete
     await this.fetchAndGenerateIndex()
-
-    /** @type {import("konnors-ninja-keys").INinjaAction[]} */
-    this.staticData = []
   }
 
   async fetchAndGenerateIndex () {
@@ -54,27 +55,32 @@ export class BridgetownNinjaKeys extends NinjaKeys {
 	 * @param {string} query
 	 * @param {number} [maxResults=10]
 	 */
-  showResultsForQuery(query, maxResults = 10) {
+  showResultsForQuery(query, maxResults = 100) {
     this.latestQuery = query
-    if (query && query.length >= 1) {
-    // this.showResults = true
+    if (this.alwaysShowResults === true || (query && query.length >= 1)) {
       this.results = this.__searchEngine.performSearch(query, this.snippetLength).slice(0, maxResults)
 
-      if (this.results?.length <= 0) return
+      if (this.results?.length <= 0) {
+        this.data = [
+          ...this.staticData,
+        ]
+
+        this.requestUpdate()
+        return
+      }
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
       const actions = this.results.map((result) => {
-        let { id, title, categories } = result
+        let { id, title, categories, url } = result
 
         categories = categories.split(/[-_]/).map(capitalizeFirstLetter).join(" ")
         return {
           id,
           title,
           section: categories,
-          handler: () => {},
+          href: url,
         }
       })
-
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
       this.data = [

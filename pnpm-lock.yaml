@@ -8,7 +8,7 @@ specifiers:
   lunr: ^2.3.8
 
 dependencies:
-  konnors-ninja-keys: 1.5.1
+  konnors-ninja-keys: link:../konnors-ninja-keys
   lit: 2.7.4
   lunr: 2.3.9
 
@@ -44,24 +44,6 @@ packages:
     resolution: {integrity: sha512-va15kYZr7KZNNPZdxONGQzpUr+4sxVu7V/VG7a8mRfPPXUyhEYj5RzXCQmGrlP3tAh0L3HHm5AjBMFYRqlM9SA==}
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.1
-    dev: false
-
-  /@material/mwc-icon/0.25.3:
-    resolution: {integrity: sha512-36076AWZIRSr8qYOLjuDDkxej/HA0XAosrj7TS1ZeLlUBnLUtbDtvc1S7KSa0hqez7ouzOqGaWK24yoNnTa2OA==}
-    dependencies:
-      lit: 2.7.4
-      tslib: 2.5.2
-    dev: false
-
-  /@open-wc/dedupe-mixin/1.3.1:
-    resolution: {integrity: sha512-ukowSvzpZQDUH0Y3znJTsY88HkiGk3Khc0WGpIPhap1xlerieYi27QBg6wx/nTurpWfU6XXXsx9ocxDYCdtw0Q==}
-    dev: false
-
-  /@open-wc/scoped-elements/2.1.5:
-    resolution: {integrity: sha512-39v61EDXiFp+pBXdYmRCNIAimJU6MxaNwplW+5IqGU+z33hsSp5CVp2mH5lJVbwXGB7hIb5wDiJa+L5pOVypqw==}
-    dependencies:
-      '@lit/reactive-element': 1.6.1
-      '@open-wc/dedupe-mixin': 1.3.1
     dev: false
 
   /@types/trusted-types/2.0.3:
@@ -303,10 +285,6 @@ packages:
       once: 1.4.0
     dev: true
 
-  /hotkeys-js/3.8.7:
-    resolution: {integrity: sha512-ckAx3EkUr5XjDwjEHDorHxRO2Kb7z6Z2Sxul4MbBkN8Nho7XDslQsgMJT+CiJ5Z4TgRxxvKHEpuLE3imzqy4Lg==}
-    dev: false
-
   /inflight/1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
     dependencies:
@@ -317,16 +295,6 @@ packages:
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
-
-  /konnors-ninja-keys/1.5.1:
-    resolution: {integrity: sha512-rb/xlQKZrHZgExdNAxY+oWhFaE1dO4xetF2KDJRIG63aM//xRiBTzjlKJ1Mqnm06R/cOWXLjRBdcpaxGjkYBKQ==}
-    dependencies:
-      '@material/mwc-icon': 0.25.3
-      '@open-wc/scoped-elements': 2.1.5
-      hotkeys-js: 3.8.7
-      lit: 2.7.4
-      web-component-define: 2.0.5
-    dev: false
 
   /lit-element/3.3.2:
     resolution: {integrity: sha512-xXAeVWKGr4/njq0rGC9dethMnYCq5hpKYrgQZYTzawt9YQhMiXfD+T1RgrdY3NamOxwq2aXlb0vOI6e29CKgVQ==}
@@ -366,17 +334,6 @@ packages:
     dependencies:
       wrappy: 1.0.2
     dev: true
-
-  /tslib/2.5.2:
-    resolution: {integrity: sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==}
-    dev: false
-
-  /web-component-define/2.0.5:
-    resolution: {integrity: sha512-/Az+61MlAavQA2xtucq7cpAZ18F6BFy3wZG06D0WPJ1HX1GYP3vcGVNMFAyZlpgP78dZ+brcWpGuIN+nXsRepw==}
-    dependencies:
-      '@lit/reactive-element': 1.6.1
-      '@open-wc/dedupe-mixin': 1.3.1
-    dev: false
 
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
