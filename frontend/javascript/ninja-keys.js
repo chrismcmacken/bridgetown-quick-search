@@ -14,9 +14,7 @@ import SearchEngine from "./search_engine.js"
  */
 
 /**
- * @extends {NinjaKeys}
- * @class
- * @type NinjaKeys
+ *
  */
 export class BridgetownNinjaKeys extends NinjaKeys {
   static baseName = "bridgetown-ninja-keys"
@@ -27,21 +25,20 @@ export class BridgetownNinjaKeys extends NinjaKeys {
 		alwaysShowResults: { state: true, type: Boolean }
   })
 
+  /**
+   * @override
+   */
   findMatches (flatData) {
     return flatData
   }
 
   constructor () {
     super()
-    this.results = []
     this.snippetLength = 142
     this.alwaysShowResults = true
-    /** @type {import("konnors-ninja-keys").INinjaAction[]} */
-    this.staticData = []
-    this.handleInput = (/** @type {NinjaChangeEvent} */ event) => {
-      const query = event.detail.search
-      this.showResultsForQuery(query)
-      this.requestUpdate()
+
+    this.handleInput = () => {
+      this.data = this.showResultsForQuery(this._search)
     }
   }
 
@@ -57,7 +54,8 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     this.__searchEngine = searchEngine
     this.__searchIndex = searchIndex
     this.addEventListener('change', this.handleInput)
-    this.showResultsForQuery(this._search)
+    this.data = this.showResultsForQuery(this._search)
+    this.requestUpdate()
   }
 
 	/**
@@ -67,21 +65,16 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   showResultsForQuery(query, maxResults = 100) {
     this.latestQuery = query
     if (this.alwaysShowResults === true || (query && query.length >= 1)) {
-      this.results = this.__searchEngine.performSearch(query, this.snippetLength).slice(0, maxResults)
-
-      if (this.results?.length <= 0) {
-        this.data = [
-          ...this.staticData,
-        ]
-
-        this.requestUpdate()
-        return
-      }
+      const results = this.__searchEngine.performSearch(query, this.snippetLength).slice(0, maxResults)
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
       const actions = []
 
-      this.results.forEach((result) => {
+      if (results.length <= 0) {
+        return []
+      }
+
+      results.forEach((result) => {
         let { id, title, categories, url, content } = result
 
         if (url.endsWith(".json")) {
@@ -99,12 +92,10 @@ export class BridgetownNinjaKeys extends NinjaKeys {
       })
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
-      this.data = [
-        ...this.staticData,
-        ...actions
-      ]
+      return actions
     }
-    this.requestUpdate()
+
+    return []
   }
 }
 
