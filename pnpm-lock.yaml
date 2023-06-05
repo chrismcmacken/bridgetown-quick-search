@@ -3,12 +3,12 @@ lockfileVersion: 5.4
 specifiers:
   esbuild: ^0.15.13
   glob: ^8.0.3
-  konnors-ninja-keys: ^1.8.0
+  konnors-ninja-keys: ^1.8.1
   lit: ^2.4.1
   lunr: ^2.3.8
 
 dependencies:
-  konnors-ninja-keys: 1.8.0
+  konnors-ninja-keys: 1.8.1
   lit: 2.7.4
   lunr: 2.3.9
 
@@ -318,8 +318,8 @@ packages:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
 
-  /konnors-ninja-keys/1.8.0:
-    resolution: {integrity: sha512-WAkBz7HHd8M/aRpInD22AjLN5czKQL4nfgg+mEtutarUutXM15ikmRZX7OKh50PzNDel2gGF8KduDnx1sm3A0g==}
+  /konnors-ninja-keys/1.8.1:
+    resolution: {integrity: sha512-6JHd2cV2guq3lTjKefZu0EaKPoG0VHCyP3QQTFJPLrqWja/D19UTzjvxtiXDqRk6uITlVlYU0GddkZ8m+EwtBw==}
     dependencies:
       '@material/mwc-icon': 0.25.3
       '@open-wc/scoped-elements': 2.1.5

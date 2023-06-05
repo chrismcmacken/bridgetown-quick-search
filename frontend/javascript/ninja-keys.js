@@ -52,7 +52,6 @@ export class BridgetownNinjaKeys extends NinjaKeys {
 
     this.handleInput = () => {
       this.data = this.createData()
-      this.requestUpdate("data")
     }
   }
 
@@ -77,7 +76,6 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     this.__searchIndex = searchIndex
     this.addEventListener('change', this.handleInput)
     this.data = this.createData()
-    this.requestUpdate()
   }
 
   createData () {
