@@ -29,7 +29,17 @@ export class BridgetownNinjaKeys extends NinjaKeys {
    * @override
    */
   findMatches (flatData) {
-    return flatData
+    const matches = super.findMatches(flatData)
+
+    this.results.forEach((result) => {
+      if (matches.find((match) => match.id === result.id)) {
+        return
+      }
+
+      matches.push(result)
+    })
+
+    return matches
   }
 
   constructor () {
@@ -37,8 +47,12 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     this.snippetLength = 142
     this.alwaysShowResults = true
 
+    this.staticData = []
+    this.results = []
+
     this.handleInput = () => {
-      this.data = this.showResultsForQuery(this._search)
+      this.data = this.createData()
+      this.requestUpdate("data")
     }
   }
 
@@ -48,14 +62,30 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     await this.fetchAndGenerateIndex()
   }
 
+  /**
+   * @override
+   */
+  open () {
+    this.data = this.createData()
+    super.open()
+  }
+
   async fetchAndGenerateIndex () {
     const { searchEngine, searchIndex } = await SearchEngine.fetchAndGenerateIndex()
 
     this.__searchEngine = searchEngine
     this.__searchIndex = searchIndex
     this.addEventListener('change', this.handleInput)
-    this.data = this.showResultsForQuery(this._search)
+    this.data = this.createData()
     this.requestUpdate()
+  }
+
+  createData () {
+    this.results = this.showResultsForQuery(this._search)
+    return [
+      ...this.staticData,
+      ...this.results,
+    ]
   }
 
 	/**
