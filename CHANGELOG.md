@@ -1,5 +1,15 @@
 # Changelog
 
+
+## 3.2.1
+
+- fix: upgrade ninja-keys
+
+
+## 3.2.0
+
+- feat: add ninja keys integration
+
 ## 3.1.0
 
 - Feat: Add additional parts for styling as well as a slot box-sizing reset.
