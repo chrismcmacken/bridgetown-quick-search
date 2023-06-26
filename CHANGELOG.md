@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.3.0
+
+- feat: add a `transformResult` hook for transforming returned content in ninja-keys.
+- feat: add `collection` object in returned results
 
 ## 3.2.1
 

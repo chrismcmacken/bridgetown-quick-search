@@ -103,20 +103,9 @@ export class BridgetownNinjaKeys extends NinjaKeys {
       }
 
       results.forEach((result) => {
-        let { id, title, categories, url, content } = result
+        const action = this.transformResult(result)
 
-        if (url.endsWith(".json")) {
-          return
-        }
-
-        categories = categories.split(/[-_]/).map(capitalizeFirstLetter).join(" ")
-        actions.push({
-          id,
-          title,
-          section: categories,
-          href: url,
-          // content
-        })
+        if (action) actions.push(action)
       })
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
@@ -125,7 +114,25 @@ export class BridgetownNinjaKeys extends NinjaKeys {
 
     return []
   }
+  transformResult (result) {
+    let { id, title, categories, url, content, collection } = result
+
+    if (url.endsWith(".json")) {
+      return
+    }
+
+    categories = categories.split(/[-_]/).map(capitalizeFirstLetter).join(" ")
+
+    return {
+      id,
+      title,
+      section: categories,
+      href: url,
+      // content
+    }
+  }
 }
+
 
 /**
  * @param {string} string

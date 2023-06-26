@@ -3,6 +3,11 @@
   "version": "3.2.2",
   "main": "frontend/dist/index.js",
   "module": "frontend/dist/index.js",
+  "exports": {
+    ".": "./frontend/dist/index.js",
+    "./package.json": "./package.json",
+    "./ninja-keys.js": "./frontend/dist/ninja-keys.js"
+  },
   "type": "module",
   "repository": {
     "type": "git",

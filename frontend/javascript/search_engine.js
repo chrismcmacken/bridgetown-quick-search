@@ -54,6 +54,7 @@ class SearchEngine {
           return {
             id: item.id.trim(),
             title: item.title.trim(),
+            collection: item.collection,
             content: item.content.trim(),
             categories: item.categories,
             url: item.url.trim(),
