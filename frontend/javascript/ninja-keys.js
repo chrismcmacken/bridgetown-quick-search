@@ -65,8 +65,8 @@ export class BridgetownNinjaKeys extends NinjaKeys {
    * @override
    */
   open () {
-    this.data = this.createData()
     super.open()
+    this.data = this.createData()
   }
 
   async fetchAndGenerateIndex () {
@@ -75,7 +75,6 @@ export class BridgetownNinjaKeys extends NinjaKeys {
     this.__searchEngine = searchEngine
     this.__searchIndex = searchIndex
     this.addEventListener('change', this.handleInput)
-    this.data = this.createData()
   }
 
   createData () {

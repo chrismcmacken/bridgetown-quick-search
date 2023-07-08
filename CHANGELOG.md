@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.4.0
+
+- feat: defer creating elements until ninja-keys is opened.
+
 ## 3.3.0
 
 - feat: add a `transformResult` hook for transforming returned content in ninja-keys.
