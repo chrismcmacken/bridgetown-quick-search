@@ -6,14 +6,14 @@ settings:
 
 dependencies:
   konnors-ninja-keys:
-    specifier: ^1.9.0
-    version: 1.9.0
+    specifier: ^1.9.1
+    version: 1.9.1
   lit:
-    specifier: ^2.4.1
-    version: 2.4.1
+    specifier: ^2.7.6
+    version: 2.7.6
   lunr:
-    specifier: ^2.3.8
-    version: 2.3.8
+    specifier: ^2.3.9
+    version: 2.3.9
 
 devDependencies:
   esbuild:
@@ -56,7 +56,7 @@ packages:
   /@material/mwc-icon@0.25.3:
     resolution: {integrity: sha512-36076AWZIRSr8qYOLjuDDkxej/HA0XAosrj7TS1ZeLlUBnLUtbDtvc1S7KSa0hqez7ouzOqGaWK24yoNnTa2OA==}
     dependencies:
-      lit: 2.7.5
+      lit: 2.7.6
       tslib: 2.6.0
     dev: false
 
@@ -325,13 +325,13 @@ packages:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
 
-  /konnors-ninja-keys@1.9.0:
-    resolution: {integrity: sha512-VVx76McIByc+eonLzv1vKRBh0pt6auBzoEWqyKoxIrmtnuVGof+f2lhf5KswzRDuWJZLWdsp24hNKgWL8Ygyhg==}
+  /konnors-ninja-keys@1.9.1:
+    resolution: {integrity: sha512-QXwcjoN7qX0DYChkM7jg38Om8hKmEa4SV7C6hSo5OYyuRyjUCbSPeP9Xwpm6VSsHZ2UIxPKCyJJFV7Y3II4Pcw==}
     dependencies:
       '@material/mwc-icon': 0.25.3
       '@open-wc/scoped-elements': 2.2.0
       hotkeys-js: 3.10.2
-      lit: 2.7.5
+      lit: 2.7.6
       web-component-define: 2.0.10
     dev: false
 
@@ -340,33 +340,25 @@ packages:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.1
       '@lit/reactive-element': 1.6.2
-      lit-html: 2.7.4
+      lit-html: 2.7.5
     dev: false
 
-  /lit-html@2.7.4:
-    resolution: {integrity: sha512-/Jw+FBpeEN+z8X6PJva5n7+0MzCVAH2yypN99qHYYkq8bI+j7I39GH+68Z/MZD6rGKDK9RpzBw7CocfmHfq6+g==}
+  /lit-html@2.7.5:
+    resolution: {integrity: sha512-YqUzpisJodwKIlbMFCtyrp58oLloKGnnPLMJ1t23cbfIJjg/H9pvLWK4XS69YeubK5HUs1UE4ys9w5dP1zg6IA==}
     dependencies:
       '@types/trusted-types': 2.0.3
     dev: false
 
-  /lit@2.4.1:
-    resolution: {integrity: sha512-qohSgLiyN1cFnJG26dIiY03S4F49857A0AHQfnS0zYtnUVnD2MFvx+UT52rtXsIuNFQrnUupX+zyGSATlk1f/A==}
+  /lit@2.7.6:
+    resolution: {integrity: sha512-1amFHA7t4VaaDe+vdQejSVBklwtH9svGoG6/dZi9JhxtJBBlqY5D1RV7iLUYY0trCqQc4NfhYYZilZiVHt7Hxg==}
     dependencies:
       '@lit/reactive-element': 1.6.2
       lit-element: 3.3.2
-      lit-html: 2.7.4
+      lit-html: 2.7.5
     dev: false
 
-  /lit@2.7.5:
-    resolution: {integrity: sha512-i/cH7Ye6nBDUASMnfwcictBnsTN91+aBjXoTHF2xARghXScKxpD4F4WYI+VLXg9lqbMinDfvoI7VnZXjyHgdfQ==}
-    dependencies:
-      '@lit/reactive-element': 1.6.2
-      lit-element: 3.3.2
-      lit-html: 2.7.4
-    dev: false
-
-  /lunr@2.3.8:
-    resolution: {integrity: sha512-oxMeX/Y35PNFuZoHp+jUj5OSEmLCaIH4KTFJh7a93cHBoFmpw2IoPs22VIz7vyO2YUnx2Tn9dzIwO2P/4quIRg==}
+  /lunr@2.3.9:
+    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
     dev: false
 
   /minimatch@5.1.6:
