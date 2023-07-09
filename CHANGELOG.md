@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.0
+
+- dependencies: update konnors-ninjas, lit, lunr
+
 ## 3.4.0
 
 - feat: defer creating elements until ninja-keys is opened.
