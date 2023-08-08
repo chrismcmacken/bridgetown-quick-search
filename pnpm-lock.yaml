@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   konnors-ninja-keys:
-    specifier: ^1.9.4
-    version: 1.9.4
+    specifier: ^1.9.5
+    version: 1.9.5
   lit:
     specifier: ^2.7.6
     version: 2.7.6
@@ -331,8 +331,8 @@ packages:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
 
-  /konnors-ninja-keys@1.9.4:
-    resolution: {integrity: sha512-AjSTMh++pQmQ/GWuF9IGcclx1s36fSSOo3XrzPz2o9hWKom/3aqjDwyKfWcfmQqFbAcWlUwHeOkK+/NKQKuxgw==}
+  /konnors-ninja-keys@1.9.5:
+    resolution: {integrity: sha512-0tmshUZcaktkxQut8/nqMRYjODt8vF67TXQe04pnFDE3ZAuSmqnYvt1Ae8zV8UAerprmpBpKTRvB40AUnsaW4Q==}
     dependencies:
       '@material/mwc-icon': 0.25.3
       '@open-wc/scoped-elements': 2.2.0
