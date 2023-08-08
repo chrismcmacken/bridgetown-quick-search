@@ -26,7 +26,7 @@
     "build": "rm -rf frontend/dist && node esbuild.config.js"
   },
   "dependencies": {
-    "konnors-ninja-keys": "^1.9.1",
+    "konnors-ninja-keys": "^1.9.2",
     "lit": "^2.7.6",
     "lunr": "^2.3.9"
   },
