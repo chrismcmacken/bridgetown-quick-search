@@ -23,7 +23,10 @@
     "frontend"
   ],
   "scripts": {
-    "build": "rm -rf frontend/dist && node esbuild.config.js"
+    "build": "rm -rf frontend/dist && node esbuild.config.js",
+    "deploy:patch": "npm run build && npm version patch && npm publish && git push --follow-tags",
+    "deploy:minor": "npm run build && npm version minor && npm publish && git push --follow-tags",
+    "deploy:major": "npm run build && npm version major && npm publish && git push --follow-tags"
   },
   "dependencies": {
     "konnors-ninja-keys": "^1.9.2",
