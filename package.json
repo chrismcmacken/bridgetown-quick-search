@@ -29,7 +29,7 @@
     "deploy:major": "npm run build && npm version major && npm publish && git push --follow-tags"
   },
   "dependencies": {
-    "konnors-ninja-keys": "^1.9.2",
+    "konnors-ninja-keys": "^1.9.3",
     "lit": "^2.7.6",
     "lunr": "^2.3.9"
   },
