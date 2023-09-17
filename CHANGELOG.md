@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.8.0
+
+- feat: Allow different endpoints via `endpoint` attribute
+- feat: Always show results if no query given.
+- feat: Set `snippet-length` and `always-show-results` as attributes
+
 ## 3.7.0
 
 - dependencies: update konnors-ninjas, lit, lunr

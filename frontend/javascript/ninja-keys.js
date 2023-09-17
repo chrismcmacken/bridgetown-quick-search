@@ -19,10 +19,11 @@ import SearchEngine from "./search_engine.js"
 export class BridgetownNinjaKeys extends NinjaKeys {
   static baseName = "bridgetown-ninja-keys"
   static properties = Object.assign(NinjaKeys.properties, {
+		snippetLength: { attribute: "snippet-length", state: true, type: Number },
+		alwaysShowResults: { attribute: "always-show-results", reflect: true, type: Boolean },
+		endpoint: { reflect: true },
 		results: { state: true, type: Array },
-		snippetLength: { state: true, type: Number },
 		staticData: { state: true, type: Array },
-		alwaysShowResults: { state: true, type: Boolean }
   })
 
   /**
@@ -49,6 +50,7 @@ export class BridgetownNinjaKeys extends NinjaKeys {
 
     this.staticData = []
     this.results = []
+    this.endpoint = "/bridgetown_quick_search/index.json"
 
     this.handleInput = () => {
       this.data = this.createData()
@@ -62,6 +64,16 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   }
 
   /**
+   * @param {import("lit").PropertyValues<this>} changedProperties
+   */
+  willUpdate (changedProperties) {
+    if (changedProperties.has("endpoint")) {
+      this.fetchAndGenerateIndex()
+    }
+
+    super.willUpdate(changedProperties)
+  }
+  /**
    * @override
    */
   open () {
@@ -70,7 +82,7 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   }
 
   async fetchAndGenerateIndex () {
-    const { searchEngine, searchIndex } = await SearchEngine.fetchAndGenerateIndex()
+    const { searchEngine, searchIndex } = await SearchEngine.fetchAndGenerateIndex(this.endpoint)
 
     this.__searchEngine = searchEngine
     this.__searchIndex = searchIndex
@@ -92,7 +104,7 @@ export class BridgetownNinjaKeys extends NinjaKeys {
   showResultsForQuery(query, maxResults = 100) {
     this.latestQuery = query
     if (this.alwaysShowResults === true || (query && query.length >= 1)) {
-      const results = this.__searchEngine.performSearch(query, this.snippetLength).slice(0, maxResults)
+      const results = this.__searchEngine.performSearch(query || "*", this.snippetLength).slice(0, maxResults)
 
       /** @type {import("konnors-ninja-keys").INinjaAction[]} */
       const actions = []
@@ -113,6 +125,10 @@ export class BridgetownNinjaKeys extends NinjaKeys {
 
     return []
   }
+
+  /**
+   * Override this for doing something with results.
+   */
   transformResult (result) {
     let { id, title, categories, url, content, collection } = result
 
